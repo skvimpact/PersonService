@@ -9,7 +9,7 @@ namespace PersonService
         public void Test1()
         {
             var t = new T();
-            
+
             Assert.Equal(2, t.TT());
         }
     }
