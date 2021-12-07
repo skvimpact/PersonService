@@ -15,7 +15,8 @@ namespace PersonService
                 .AddJsonFile("appsettings.json")
                 .Build();
             var optionsBuilder = new DbContextOptionsBuilder<PersonDbContext>();
-            optionsBuilder.UseNpgsql(config["postgres:cstr"]);
+            //optionsBuilder.UseNpgsql(config["postgres:cstr"]);
+            optionsBuilder.UseNpgsql("Host=ds220;Port=65432;Database=BeeHive;Username=postgres;Password=zozo");
                 PersonDbContext db = new PersonDbContext(optionsBuilder.Options);
             repo = new PersonRepository(db);    
         }
@@ -26,6 +27,9 @@ namespace PersonService
         {            
             var p = repo.Get(1);
             Assert.Equal("Kirill", p.Name);
+            p = repo.Get(2);
+            Assert.Equal("Olga", p.Name);
+
         }
     }
 }
