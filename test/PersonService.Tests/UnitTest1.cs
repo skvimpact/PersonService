@@ -1,10 +1,25 @@
 using System;
+using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
+using PersonService.Persistence;
 using Xunit;
 
 namespace PersonService
 {
     public class UnitTest1
     {
+        private PersonRepository repo;
+        public UnitTest1(){
+            IConfiguration config = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build();
+            var optionsBuilder = new DbContextOptionsBuilder<PersonDbContext>();
+            //optionsBuilder.UseSqlServer(config["ConnectionStrings:SchemaConnection"]);
+                PersonDbContext db = new PersonDbContext(optionsBuilder.Options);
+            repo = new PersonRepository(db);    
+        }
+
+
         [Fact]
         public void Test1()
         {
