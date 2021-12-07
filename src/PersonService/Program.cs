@@ -22,8 +22,8 @@ namespace PersonService
             optionsBuilder.UseNpgsql("Host=ds220;Port=65432;Database=BeeHive;Username=postgres;Password=zozo");
                 PersonDbContext db = new PersonDbContext(optionsBuilder.Options);
             repo = new PersonRepository(db);   
-            var p = repo.Get(1);
-            Console.WriteLine(p.Name);         
+            //var p = repo.Get(1);
+            Console.WriteLine($"{repo.Get(1).Name}+{repo.Get(2).Name}");         
         }
     }
 }
