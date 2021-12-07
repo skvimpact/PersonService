@@ -23,10 +23,9 @@ namespace PersonService
 
         [Fact]
         public void Test1()
-        {
-            var t = new T();
-
-            Assert.Equal(2, t.TT());
+        {            
+            var p = repo.Get(1);
+            Assert.Equal("Kirill", p.Name);
         }
     }
 }
