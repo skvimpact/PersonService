@@ -15,8 +15,7 @@ namespace PersonService
                 .AddJsonFile("appsettings.json")
                 .Build();
             var optionsBuilder = new DbContextOptionsBuilder<PersonDbContext>();
-            //optionsBuilder.UseNpgsql(config["postgres:cstr"]);
-            optionsBuilder.UseNpgsql("Host=ds220;Port=65432;Database=BeeHive;Username=postgres;Password=zozo");
+            optionsBuilder.UseNpgsql(config["postgres:cstr"]);            
                 PersonDbContext db = new PersonDbContext(optionsBuilder.Options);
             repo = new PersonRepository(db);    
         }
