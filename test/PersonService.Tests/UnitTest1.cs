@@ -1,6 +1,7 @@
 using System;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
+using Npgsql.EntityFrameworkCore.PostgreSQL;
 using PersonService.Persistence;
 using Xunit;
 
@@ -14,7 +15,7 @@ namespace PersonService
                 .AddJsonFile("appsettings.json")
                 .Build();
             var optionsBuilder = new DbContextOptionsBuilder<PersonDbContext>();
-            //optionsBuilder.UseSqlServer(config["ConnectionStrings:SchemaConnection"]);
+            optionsBuilder.UseNpgsql(config["postgres:cstr"]);
                 PersonDbContext db = new PersonDbContext(optionsBuilder.Options);
             repo = new PersonRepository(db);    
         }
